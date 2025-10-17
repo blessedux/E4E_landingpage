@@ -1,8 +1,50 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import AnimatedText from '../components/AnimatedText'
+import Loader from '../components/Loader'
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 3000) // Show preloader for 3 seconds
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (isLoading) {
+    return React.createElement(React.Fragment, null,
+      React.createElement(Head, null,
+        React.createElement('title', null, 'E4E - Equity for Everyone'),
+        React.createElement('meta', { name: 'description', content: 'Own the future, one startup at a time.' }),
+        React.createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }),
+        React.createElement('link', { rel: 'icon', href: '/favicon.ico' }),
+        React.createElement('link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }),
+        React.createElement('link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }),
+        React.createElement('link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }),
+        React.createElement('link', { rel: 'manifest', href: '/site.webmanifest' })
+      ),
+      React.createElement('div', {
+        style: {
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: '#e5e7eb',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 9999,
+          transition: 'opacity 0.5s ease-out'
+        }
+      },
+        React.createElement(Loader, null)
+      )
+    )
+  }
   return React.createElement(React.Fragment, null,
     React.createElement(Head, null,
       React.createElement('title', null, 'E4E - Equity for Everyone'),
@@ -27,7 +69,8 @@ export default function Home() {
           overflow: 'hidden',
           zIndex: 2,
           pointerEvents: 'auto'
-        }
+        },
+        className: 'spline-outer-container'
       },
         React.createElement('div', {
           style: {
@@ -127,7 +170,8 @@ export default function Home() {
           zIndex: 5,
           pointerEvents: 'auto',
           maxWidth: '600px'
-        }
+        },
+        className: 'animated-title'
       },
         React.createElement(AnimatedText, {
           shortText: "E4E",
@@ -147,7 +191,8 @@ export default function Home() {
           transform: 'translateX(-50%)',
           zIndex: 10,
           pointerEvents: 'auto'
-        }
+        },
+        className: 'cta-button'
       },
         React.createElement('a', {
           href: 'https://docs.google.com/forms/d/e/1FAIpQLScbyP21VTXpYSbwGe2UHaXAoz097z1mnbkgTn6WZxv8DSW4Zw/viewform?usp=dialog',

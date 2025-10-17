@@ -164,6 +164,7 @@ const AnimatedText = ({
     ),
     React.createElement('p', {
       ref: sloganRef,
+      className: 'slogan',
       style: {
         fontSize: '1.5rem',
         fontWeight: '300',
