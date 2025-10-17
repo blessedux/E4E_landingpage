@@ -25,7 +25,7 @@
   right: 32%;
   bottom: -11px;
   /* This background color is crucial for the masking effect and must match the page background */
-  background: #e5e7eb; 
+  background: transparent; 
   transform: translateZ(200px) rotate(var(--r));
   animation: mask var(--duration) linear forwards infinite;
 }
@@ -119,21 +119,21 @@
   --b: 1.4;
 }
 
-.loader .box.box0 { --x: -220px; --y: -120px; left: 58px; top: 108px; animation-name: box-move0; }
+.loader .box.box0 { --x: -220px; --y: -120px; left: 58px; top: 108px; animation-name: box-move0, box-fade0; }
 .loader .box.box0 div { animation-name: box-scale0; }
-.loader .box.box1 { --x: -260px; --y: 120px; left: 25px; top: 120px; animation-name: box-move1; }
+.loader .box.box1 { --x: -260px; --y: 120px; left: 25px; top: 120px; animation-name: box-move1, box-fade1; }
 .loader .box.box1 div { animation-name: box-scale1; }
-.loader .box.box2 { --x: 120px; --y: -190px; left: 58px; top: 64px; animation-name: box-move2; }
+.loader .box.box2 { --x: 120px; --y: -190px; left: 58px; top: 64px; animation-name: box-move2, box-fade2; }
 .loader .box.box2 div { animation-name: box-scale2; }
-.loader .box.box3 { --x: 280px; --y: -40px; left: 91px; top: 120px; animation-name: box-move3; }
+.loader .box.box3 { --x: 280px; --y: -40px; left: 91px; top: 120px; animation-name: box-move3, box-fade3; }
 .loader .box.box3 div { animation-name: box-scale3; }
-.loader .box.box4 { --x: 60px; --y: 200px; left: 58px; top: 132px; animation-name: box-move4; }
+.loader .box.box4 { --x: 60px; --y: 200px; left: 58px; top: 132px; animation-name: box-move4, box-fade4; }
 .loader .box.box4 div { animation-name: box-scale4; }
-.loader .box.box5 { --x: -220px; --y: -120px; left: 25px; top: 76px; animation-name: box-move5; }
+.loader .box.box5 { --x: -220px; --y: -120px; left: 25px; top: 76px; animation-name: box-move5, box-fade5; }
 .loader .box.box5 div { animation-name: box-scale5; }
-.loader .box.box6 { --x: -260px; --y: 120px; left: 91px; top: 76px; animation-name: box-move6; }
+.loader .box.box6 { --x: -260px; --y: 120px; left: 91px; top: 76px; animation-name: box-move6, box-fade6; }
 .loader .box.box6 div { animation-name: box-scale6; }
-.loader .box.box7 { --x: -240px; --y: 200px; left: 58px; top: 87px; animation-name: box-move7; }
+.loader .box.box7 { --x: -240px; --y: 200px; left: 58px; top: 87px; animation-name: box-move7, box-fade7; }
 .loader .box.box7 div { animation-name: box-scale7; }
 
 @keyframes box-move0 { 12% { transform: translate(var(--x), var(--y)); } 25%, 52% { transform: translate(0, 0); } 80% { transform: translate(0, -32px); } 90%, 100% { transform: translate(0, 188px); } }
@@ -152,6 +152,15 @@
 @keyframes box-scale6 { 30% { transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0); } 38%, 100% { transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1); } }
 @keyframes box-move7 { 40% { transform: translate(var(--x), var(--y)); } 53%, 52% { transform: translate(0, 0); } 80% { transform: translate(0, -32px); } 90%, 100% { transform: translate(0, 188px); } }
 @keyframes box-scale7 { 34% { transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0); } 42%, 100% { transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1); } }
+
+@keyframes box-fade0 { 0%, 80% { opacity: 1; } 90%, 100% { opacity: 0; } }
+@keyframes box-fade1 { 0%, 80% { opacity: 1; } 90%, 100% { opacity: 0; } }
+@keyframes box-fade2 { 0%, 80% { opacity: 1; } 90%, 100% { opacity: 0; } }
+@keyframes box-fade3 { 0%, 80% { opacity: 1; } 90%, 100% { opacity: 0; } }
+@keyframes box-fade4 { 0%, 80% { opacity: 1; } 90%, 100% { opacity: 0; } }
+@keyframes box-fade5 { 0%, 80% { opacity: 1; } 90%, 100% { opacity: 0; } }
+@keyframes box-fade6 { 0%, 80% { opacity: 1; } 90%, 100% { opacity: 0; } }
+@keyframes box-fade7 { 0%, 80% { opacity: 1; } 90%, 100% { opacity: 0; } }
 
 @keyframes ground { 0%, 65% { transform: rotateX(90deg) rotateY(0deg) translate(-48px, -120px) translateZ(100px) scale(0); } 75%, 90% { transform: rotateX(90deg) rotateY(0deg) translate(-48px, -120px) translateZ(100px) scale(1); } 100% { transform: rotateX(90deg) rotateY(0deg) translate(-48px, -120px) translateZ(100px) scale(0); } }
 @keyframes ground-shine { 0%, 70% { opacity: 0; } 75%, 87% { opacity: 0.2; } 100% { opacity: 0; } }

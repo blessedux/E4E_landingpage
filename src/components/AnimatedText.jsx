@@ -128,10 +128,12 @@ const AnimatedText = ({
       className: `animated-text ${className}`,
       style: {
         fontSize: fontSize,
-        fontWeight: '900',
+        fontFamily: "'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+        fontWeight: '500',
         letterSpacing: '-2px',
         textTransform: 'uppercase',
-        cursor: 'pointer',
+        cursor: 'default',
+        userSelect: 'none',
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
@@ -167,14 +169,20 @@ const AnimatedText = ({
       className: 'slogan',
       style: {
         fontSize: '1.5rem',
+        fontFamily: "'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
         fontWeight: '300',
-        color: '#666666',
+        color: '#000000',
         letterSpacing: '0.05em',
         opacity: 0,
-        margin: 0,
+        margin: '0 0 2rem 0',
         lineHeight: '1.4',
-        maxWidth: '90vw',
-        wordBreak: 'break-word'
+        maxWidth: '100vw',
+        width: '100vw',
+        wordBreak: 'break-word',
+        userSelect: 'none',
+        cursor: 'default',
+        padding: '0 1rem',
+        boxSizing: 'border-box'
       }
     }, 'Own the future, one startup at a time.')
   );

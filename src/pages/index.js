@@ -33,7 +33,10 @@ export default function Home() {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundColor: '#e5e7eb',
+          backgroundImage: 'url(/default_dark_pink.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -56,7 +59,16 @@ export default function Home() {
       React.createElement('link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }),
       React.createElement('link', { rel: 'manifest', href: '/site.webmanifest' })
     ),
-    React.createElement('main', null,
+    React.createElement('main', {
+      style: {
+        backgroundImage: 'url(/default_dark_pink.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        height: '100vh',
+        overflow: 'hidden'
+      }
+    },
       // Background Spline Container
       React.createElement('div', {
         style: {
@@ -68,7 +80,9 @@ export default function Home() {
           borderRadius: '16px',
           overflow: 'hidden',
           zIndex: 2,
-          pointerEvents: 'auto'
+          pointerEvents: 'auto',
+          opacity: 1,
+          transition: 'opacity 0.3s ease'
         },
         className: 'spline-outer-container'
       },
@@ -116,9 +130,11 @@ export default function Home() {
         style: {
           position: 'fixed',
           top: '2rem',
-          left: '2rem',
+          left: 'calc(2rem + 5%)',
           zIndex: 10,
-          pointerEvents: 'auto'
+          pointerEvents: 'auto',
+          opacity: 1,
+          transition: 'opacity 0.3s ease'
         }
       },
         React.createElement('div', {
@@ -127,34 +143,28 @@ export default function Home() {
             height: '60px',
             cursor: 'pointer',
             padding: '0.5rem',
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            backgroundColor: 'transparent',
             borderRadius: '12px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
             transition: 'all 0.3s ease',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           },
           onMouseEnter: (e) => {
-            e.target.style.backgroundColor = 'rgba(255, 255, 255, 1)';
             e.target.style.transform = 'scale(1.05)';
-            e.target.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
           },
           onMouseLeave: (e) => {
-            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
             e.target.style.transform = 'scale(1)';
-            e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
           }
         },
           React.createElement('img', {
-            src: '/android-chrome-192x192.png',
+            src: '/e4e_logo.png',
             alt: 'E4E Logo',
             style: {
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain'
+              width: '200%',
+              height: '200%',
+              objectFit: 'contain',
+              transform: 'translate(-25%, -25%)'
             }
           })
         )
@@ -169,7 +179,9 @@ export default function Home() {
           transform: 'translateY(-50%)',
           zIndex: 5,
           pointerEvents: 'auto',
-          maxWidth: '600px'
+          maxWidth: '600px',
+          opacity: 1,
+          transition: 'opacity 0.3s ease'
         },
         className: 'animated-title'
       },
@@ -191,20 +203,28 @@ export default function Home() {
           transform: 'translateX(-50%)',
           zIndex: 10,
           pointerEvents: 'auto',
-          textAlign: 'center'
+          textAlign: 'center',
+          opacity: 1,
+          transition: 'opacity 0.3s ease'
         },
         className: 'slogan'
       },
         React.createElement('p', {
           style: {
             fontSize: '1.5rem',
+            fontFamily: "'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
             fontWeight: '300',
-            color: '#666666',
+            color: '#000000',
             letterSpacing: '0.05em',
-            margin: 0,
+            margin: '0 0 2rem 0',
             lineHeight: '1.4',
-            maxWidth: '90vw',
-            wordBreak: 'break-word'
+            maxWidth: '100vw',
+            width: '100vw',
+            wordBreak: 'break-word',
+            userSelect: 'none',
+            cursor: 'default',
+            padding: '0 1rem',
+            boxSizing: 'border-box'
           }
         }, 'Own the future, one startup at a time.')
       ),
@@ -217,7 +237,9 @@ export default function Home() {
           left: '50%',
           transform: 'translateX(-50%)',
           zIndex: 10,
-          pointerEvents: 'auto'
+          pointerEvents: 'auto',
+          opacity: 1,
+          transition: 'opacity 0.3s ease'
         },
         className: 'cta-button'
       },
@@ -236,17 +258,20 @@ export default function Home() {
               color: '#ffffff',
               padding: '1rem 2rem',
               fontSize: '1.125rem',
+              fontFamily: "'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
               fontWeight: '600',
               letterSpacing: '0.05em',
               textTransform: 'uppercase',
               border: 'none',
               borderRadius: '12px',
               cursor: 'pointer',
-              boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1)',
+              boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2)',
               transition: 'all 0.2s ease',
               transform: 'translateY(0)',
               position: 'relative',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              backdropFilter: 'blur(10px)',
+              border: '2px solid rgba(255, 255, 255, 0.1)'
             },
             onMouseEnter: (e) => {
               e.target.style.backgroundColor = '#333333';

@@ -79,7 +79,8 @@ export function LayeredText({
         textTransform: 'uppercase', 
         color: 'black', 
         WebkitFontSmoothing: 'antialiased', 
-        cursor: 'pointer',
+        cursor: 'default',
+        userSelect: 'none',
         fontSize, 
         textAlign: 'center'
       }}

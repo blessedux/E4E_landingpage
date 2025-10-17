@@ -132,9 +132,9 @@ main {
 /* Mobile Spline scaling */
 @media (max-width: 768px) {
   .spline-container {
-    width: 130% !important;
-    height: 130% !important;
-    transform: translate(-15%, -15%) !important;
+    width: 150% !important;
+    height: 150% !important;
+    transform: translate(-25%, -25%) !important;
   }
   
   /* Ensure iframe covers full area on mobile */
