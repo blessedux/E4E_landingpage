@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global background to prevent white flash */
+html, body {
+  background-image: url('/default_dark_pink.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+#__next {
+  background-image: url('/default_dark_pink.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
+}
+
 /* Bounce animation for scroll chevron */
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
