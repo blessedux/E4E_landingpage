@@ -5,6 +5,7 @@ import Loader from '../components/Loader'
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
+  const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -12,6 +13,16 @@ export default function Home() {
     }, 3000) // Show preloader for 3 seconds
 
     return () => clearTimeout(timer)
+  }, [])
+
+  // Scroll event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   if (isLoading) {
@@ -65,8 +76,8 @@ export default function Home() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        height: '100vh',
-        overflow: 'hidden'
+        minHeight: '200vh',
+        overflow: 'auto'
       }
     },
       // Background Spline Container
@@ -179,8 +190,8 @@ export default function Home() {
           transform: 'translateY(-50%)',
           zIndex: 5,
           pointerEvents: 'auto',
-          maxWidth: '600px',
-          opacity: 1,
+          maxWidth: '420px',
+          opacity: Math.max(0, 1 - scrollY / 300),
           transition: 'opacity 0.3s ease'
         },
         className: 'animated-title'
@@ -204,7 +215,7 @@ export default function Home() {
           zIndex: 10,
           pointerEvents: 'auto',
           textAlign: 'center',
-          opacity: 1,
+          opacity: Math.max(0, 1 - scrollY / 300),
           transition: 'opacity 0.3s ease'
         },
         className: 'slogan'
@@ -293,6 +304,42 @@ export default function Home() {
             }
           }, 'Join Early Access')
         )
+      ),
+
+      // Second Title - Bottom Right (fades in on scroll)
+      React.createElement('div', {
+        style: {
+          position: 'fixed',
+          bottom: 'calc(10vh + 2rem)',
+          right: '2rem',
+          zIndex: 10,
+          pointerEvents: 'auto',
+          opacity: Math.min(1, Math.max(0, (scrollY - 200) / 200)),
+          transition: 'opacity 0.5s ease',
+          padding: '1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          borderRadius: '8px',
+          backdropFilter: 'blur(10px)',
+          marginBottom: '2rem',
+          maxWidth: '500px'
+        },
+        className: 'second-title'
+      },
+        React.createElement('h2', {
+          style: {
+            fontSize: '1.5rem',
+            fontFamily: "'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+            fontWeight: '300',
+            color: '#000000',
+            letterSpacing: '0.05em',
+            margin: '0',
+            lineHeight: '1.4',
+            textAlign: 'right',
+            userSelect: 'none',
+            cursor: 'default',
+            whiteSpace: 'pre-line'
+          }
+        }, 'With e4e, anyone can invest in startups from $50.\nWatch founders pitch, swipe right, and back those you believe in.\nFunds unlock only when founders deliver.')
       )
     )
   )
