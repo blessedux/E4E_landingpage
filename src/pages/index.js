@@ -205,7 +205,7 @@ export default function Home() {
           }
         },
           React.createElement('img', {
-            src: '/e4e_logo.png',
+            src: '/E4E_logo.png',
             alt: 'E4E Logo',
             style: {
               width: '200%',
