@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 3000) // Show preloader for 3 seconds
+    }, 3500) // Show preloader for 3.5 seconds to allow full animation cycle
 
     return () => clearTimeout(timer)
   }, [])
@@ -88,7 +88,7 @@ export default function Home() {
           justifyContent: 'center',
           alignItems: 'center',
           zIndex: 9999,
-          transition: 'opacity 0.5s ease-out'
+          transition: 'opacity 0.8s ease-out'
         }
       },
         React.createElement(Loader, null)
