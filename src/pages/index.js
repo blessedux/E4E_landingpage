@@ -112,8 +112,12 @@ export default function Home() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        backgroundColor: '#1a0a1a',
         minHeight: '200vh',
-        overflow: 'auto'
+        overflow: 'auto',
+        position: 'relative',
+        zIndex: 1
       }
     },
       // Background Spline Container

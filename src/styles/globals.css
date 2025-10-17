@@ -3,15 +3,21 @@
 @tailwind utilities;
 
 /* Global background to prevent white flash */
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   background-image: url('/default_dark_pink.png') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-attachment: fixed !important;
+  background-color: #1a0a1a !important; /* Fallback color similar to the image */
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 #__next {
@@ -20,7 +26,14 @@ html, body {
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-attachment: fixed !important;
+  background-color: #1a0a1a !important; /* Fallback color */
   min-height: 100vh;
+  position: relative;
+}
+
+/* Ensure all divs have the background */
+div {
+  background-color: transparent !important;
 }
 
 /* Bounce animation for scroll chevron */

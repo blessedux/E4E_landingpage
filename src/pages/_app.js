@@ -18,6 +18,11 @@ function MyApp({ Component, pageProps }) {
         href: 'https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap',
         rel: 'stylesheet'
       }),
+      React.createElement('link', {
+        rel: 'preload',
+        href: '/default_dark_pink.png',
+        as: 'image'
+      }),
       React.createElement('style', {
         dangerouslySetInnerHTML: {
           __html: `
@@ -27,9 +32,11 @@ function MyApp({ Component, pageProps }) {
               background-position: center !important;
               background-repeat: no-repeat !important;
               background-attachment: fixed !important;
+              background-color: #1a0a1a !important;
               margin: 0;
               padding: 0;
               min-height: 100vh;
+              overflow-x: hidden;
             }
             #__next {
               background-image: url('/default_dark_pink.png') !important;
@@ -37,7 +44,15 @@ function MyApp({ Component, pageProps }) {
               background-position: center !important;
               background-repeat: no-repeat !important;
               background-attachment: fixed !important;
+              background-color: #1a0a1a !important;
               min-height: 100vh;
+              position: relative;
+            }
+            * {
+              box-sizing: border-box;
+            }
+            div {
+              background-color: transparent !important;
             }
           `
         }
