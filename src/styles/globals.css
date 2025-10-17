@@ -31,8 +31,8 @@ html, body {
   position: relative;
 }
 
-/* Ensure all divs have the background */
-div {
+/* Ensure all divs have the background, but exclude loader */
+div:not([class*="loader"]):not([class*="Loader"]) {
   background-color: transparent !important;
 }
 

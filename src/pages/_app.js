@@ -51,7 +51,7 @@ function MyApp({ Component, pageProps }) {
             * {
               box-sizing: border-box;
             }
-            div {
+            div:not([class*="loader"]):not([class*="Loader"]) {
               background-color: transparent !important;
             }
           `
