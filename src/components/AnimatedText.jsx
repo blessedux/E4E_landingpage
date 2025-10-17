@@ -6,7 +6,8 @@ const AnimatedText = ({
   fullText = "EQUITY FOR EVERYONE", 
   fontSize = "4rem",
   color = "#000000",
-  className = ""
+  className = "",
+  scrollY = 0
 }) => {
   const textRef = useRef(null);
   const sloganRef = useRef(null);
@@ -114,7 +115,7 @@ const AnimatedText = ({
           textRef.current.removeEventListener('mouseleave', handleMouseLeave);
         }
       };
-  }, [shortText, fullText, color]);
+  }, [shortText, fullText, color, scrollY]);
 
   return React.createElement('div', {
     style: {
@@ -173,7 +174,7 @@ const AnimatedText = ({
         fontWeight: '300',
         color: '#000000',
         letterSpacing: '0.05em',
-        opacity: 0,
+        opacity: Math.max(0, 1 - scrollY / 300),
         margin: '0 0 2rem 0',
         lineHeight: '1.4',
         maxWidth: '100vw',

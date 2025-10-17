@@ -2,6 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Bounce animation for scroll chevron */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive chevron positioning */
+@media (min-width: 768px) {
+  .scroll-chevron {
+    left: calc(10vw + 2rem) !important;
+    transform: none !important;
+  }
+}
+
+/* Center h1 title on mobile */
+@media (max-width: 767px) {
+  .animated-title {
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    text-align: center !important;
+  }
+  
+  .scroll-chevron {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: calc(16% + 10vh) !important;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

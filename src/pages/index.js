@@ -6,6 +6,8 @@ import Loader from '../components/Loader'
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const [scrollY, setScrollY] = useState(0)
+  const [isMuted, setIsMuted] = useState(false)
+  const [audio, setAudio] = useState(null)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -24,6 +26,40 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Audio initialization and control
+  useEffect(() => {
+    if (!isLoading) {
+      const audioElement = new Audio('/sound/Awalk_edit.mp3')
+      audioElement.loop = true
+      audioElement.volume = 0.3
+      setAudio(audioElement)
+      
+      // Auto-play with user interaction
+      const playAudio = () => {
+        audioElement.play().catch(console.error)
+        document.removeEventListener('click', playAudio)
+        document.removeEventListener('touchstart', playAudio)
+      }
+      
+      document.addEventListener('click', playAudio)
+      document.addEventListener('touchstart', playAudio)
+      
+      return () => {
+        audioElement.pause()
+        document.removeEventListener('click', playAudio)
+        document.removeEventListener('touchstart', playAudio)
+      }
+    }
+  }, [isLoading])
+
+  // Mute/unmute functionality
+  const toggleMute = () => {
+    if (audio) {
+      audio.muted = !audio.muted
+      setIsMuted(audio.muted)
+    }
+  }
 
   if (isLoading) {
     return React.createElement(React.Fragment, null,
@@ -180,6 +216,47 @@ export default function Home() {
           })
         )
       ),
+
+      // Sound Control Icon - Top Right
+      React.createElement('div', {
+        style: {
+          position: 'fixed',
+          top: '2rem',
+          right: '2rem',
+          zIndex: 10,
+          pointerEvents: 'auto',
+          opacity: 1,
+          transition: 'opacity 0.3s ease'
+        }
+      },
+        React.createElement('button', {
+          onClick: toggleMute,
+          style: {
+            width: '50px',
+            height: '50px',
+            backgroundColor: 'transparent',
+            border: '2px solid #000000',
+            borderRadius: '50%',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'all 0.3s ease',
+            fontSize: '1.2rem',
+            color: '#000000'
+          },
+          onMouseEnter: (e) => {
+            e.target.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+            e.target.style.transform = 'scale(1.05)';
+          },
+          onMouseLeave: (e) => {
+            e.target.style.backgroundColor = 'transparent';
+            e.target.style.transform = 'scale(1)';
+          }
+        },
+          isMuted ? '🔇' : '🔊'
+        )
+      ),
       
       // Animated Text Title Overlay
       React.createElement('div', {
@@ -191,7 +268,7 @@ export default function Home() {
           zIndex: 5,
           pointerEvents: 'auto',
           maxWidth: '420px',
-          opacity: Math.max(0, 1 - scrollY / 300),
+          opacity: 1,
           transition: 'opacity 0.3s ease'
         },
         className: 'animated-title'
@@ -201,7 +278,8 @@ export default function Home() {
           fullText: "EQUITY FOR EVERYONE",
           fontSize: "clamp(2.5rem, 8vw, 4rem)",
           color: "#000000",
-          className: "e4e-title"
+          className: "e4e-title",
+          scrollY: scrollY
         })
       ),
       
@@ -238,6 +316,49 @@ export default function Home() {
             boxSizing: 'border-box'
           }
         }, 'Own the future, one startup at a time.')
+      ),
+
+      // Animated Scroll Down Chevron
+      React.createElement('div', {
+        style: {
+          position: 'fixed',
+          bottom: 'calc(16% + 7.2vh)',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 10,
+          pointerEvents: 'auto',
+          opacity: Math.max(0, 1 - scrollY / 300),
+          transition: 'opacity 0.3s ease',
+          animation: 'bounce 2s infinite'
+        },
+        className: 'scroll-chevron'
+      },
+        React.createElement('div', {
+          style: {
+            width: '40px',
+            height: '40px',
+            border: '2px solid #000000',
+            borderTop: 'none',
+            borderLeft: 'none',
+            transform: 'rotate(45deg)',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease'
+          },
+          onMouseEnter: (e) => {
+            e.target.style.borderColor = '#333333';
+            e.target.style.transform = 'rotate(45deg) scale(1.1)';
+          },
+          onMouseLeave: (e) => {
+            e.target.style.borderColor = '#000000';
+            e.target.style.transform = 'rotate(45deg) scale(1)';
+          },
+          onClick: () => {
+            window.scrollTo({
+              top: window.innerHeight,
+              behavior: 'smooth'
+            });
+          }
+        })
       ),
       
       // CTA Button at Bottom
@@ -281,8 +402,6 @@ export default function Home() {
               transform: 'translateY(0)',
               position: 'relative',
               overflow: 'hidden',
-              backdropFilter: 'blur(10px)',
-              border: '2px solid rgba(255, 255, 255, 0.1)'
             },
             onMouseEnter: (e) => {
               e.target.style.backgroundColor = '#333333';
@@ -317,9 +436,7 @@ export default function Home() {
           opacity: Math.min(1, Math.max(0, (scrollY - 200) / 200)),
           transition: 'opacity 0.5s ease',
           padding: '1rem',
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
           borderRadius: '8px',
-          backdropFilter: 'blur(10px)',
           marginBottom: '2rem',
           maxWidth: '500px'
         },
@@ -339,7 +456,11 @@ export default function Home() {
             cursor: 'default',
             whiteSpace: 'pre-line'
           }
-        }, 'With e4e, anyone can invest in startups from $50.\nWatch founders pitch, swipe right, and back those you believe in.\nFunds unlock only when founders deliver.')
+        }, 
+          'With ',
+          React.createElement('strong', { style: { fontWeight: '600' } }, 'e4e'),
+          ', anyone can invest \nin startups from $50.\nWatch founders pitch, swipe right,\n and back those you believe in.\nFunds unlock only when founders deliver.'
+        )
       )
     )
   )
