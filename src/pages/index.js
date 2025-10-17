@@ -182,11 +182,38 @@ export default function Home() {
         })
       ),
       
+      // Slogan near CTA Button
+      React.createElement('div', {
+        style: {
+          position: 'fixed',
+          bottom: '16%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 10,
+          pointerEvents: 'auto',
+          textAlign: 'center'
+        },
+        className: 'slogan'
+      },
+        React.createElement('p', {
+          style: {
+            fontSize: '1.5rem',
+            fontWeight: '300',
+            color: '#666666',
+            letterSpacing: '0.05em',
+            margin: 0,
+            lineHeight: '1.4',
+            maxWidth: '90vw',
+            wordBreak: 'break-word'
+          }
+        }, 'Own the future, one startup at a time.')
+      ),
+      
       // CTA Button at Bottom
       React.createElement('div', { 
         style: { 
           position: 'fixed',
-          bottom: '20%',
+          bottom: '10%',
           left: '50%',
           transform: 'translateX(-50%)',
           zIndex: 10,

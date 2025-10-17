@@ -58,27 +58,27 @@ const AnimatedText = ({
             delay: 0.2
           }
         );
-      }, 100);
-    }, 2000);
+        }, 100);
+      }, 2000);
 
-    // Show slogan after title expansion
-    const sloganTimer = setTimeout(() => {
-      if (sloganRef.current) {
-        gsap.fromTo(sloganRef.current,
-          {
-            opacity: 0,
-            y: 30
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-            delay: 0.5
-          }
-        );
-      }
-    }, 3500);
+      // Show slogan after title expansion
+      const sloganTimer = setTimeout(() => {
+        if (sloganRef.current) {
+          gsap.fromTo(sloganRef.current,
+            {
+              opacity: 0,
+              y: 30
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power2.out",
+              delay: 0.5
+            }
+          );
+        }
+      }, 3500);
 
     // Hover animation
     const handleMouseEnter = () => {
@@ -106,14 +106,14 @@ const AnimatedText = ({
     textRef.current.addEventListener('mouseenter', handleMouseEnter);
     textRef.current.addEventListener('mouseleave', handleMouseLeave);
 
-    return () => {
-      clearTimeout(expandTimer);
-      clearTimeout(sloganTimer);
-      if (textRef.current) {
-        textRef.current.removeEventListener('mouseenter', handleMouseEnter);
-        textRef.current.removeEventListener('mouseleave', handleMouseLeave);
-      }
-    };
+      return () => {
+        clearTimeout(expandTimer);
+        clearTimeout(sloganTimer);
+        if (textRef.current) {
+          textRef.current.removeEventListener('mouseenter', handleMouseEnter);
+          textRef.current.removeEventListener('mouseleave', handleMouseLeave);
+        }
+      };
   }, [shortText, fullText, color]);
 
   return React.createElement('div', {
